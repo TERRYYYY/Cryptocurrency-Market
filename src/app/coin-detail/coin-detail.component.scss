@@ -1,0 +1,327 @@
+.container-fluid{
+    margin-left: 80px;
+}
+.details {
+    width: 80%;
+    display: flex;
+    margin-top: 15px;
+    margin-left: 30px;
+    // align-items: center;
+    // border-right: 2px solid #b700ff;
+    // flex-direction: column;
+    h3 {
+        font-size: 22px;
+        font-weight: 500;
+        margin-bottom: 10px;
+        margin-left: 200px;
+        margin-top: -40px;
+    }
+    h6 {
+        font-size: 17px;
+        font-weight: 300;
+        width: 100%;
+        padding: 25px;
+        text-align: justify;
+        padding-top: 0;
+        padding-bottom: 15px;
+        margin-top: 30px;
+    }
+}
+.navigate{
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 400;
+    margin-left: 50px;
+    color: #b700ff;
+    cursor: pointer;
+}
+
+.img {
+    background: transparent;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    img {
+        margin: auto;
+        display: flex;
+        margin-left: 140px;  
+    }
+    .mycurrentprice{
+        margin-left: 240px;
+    }
+    .mysymbol{
+        font-weight: 400;
+    }
+    #next{
+        margin-left: 60px;
+    }
+}
+
+.more-details {
+    padding: 5px;
+    margin: 5px;
+    line-height: 35px;
+    margin-left: 120px;
+    
+    .title {
+        font-size: 17px;
+        font-weight: 500;
+        margin-left: 10px;
+    }
+    .value {
+        font-size: 15px;
+        font-weight: 300;
+    }
+}
+#graph-header{
+    margin-top: -40px;
+    .chart-header{
+        margin-top: 30px;
+    }
+
+}
+.graph-header{
+    margin-left: 30px;
+    margin-bottom: 0px;
+
+    #buy-sell{
+        margin-left: 150px;
+    }
+    .mat-menu-item{
+        background: #FF1493;
+        color: white;
+    }
+}
+.tab-group{
+    color: #b700ff;
+}
+
+.button-chart{
+    color: black;
+    background: transparent;
+    font-weight: 200;
+    font-size: 15px;
+    border: 1px solid white;
+    width: 18%;
+    margin-left: 20px;
+
+}
+//#009688
+.btn-custom {
+    // margin-top: 40px;
+    color: black;
+    background: transparent;
+    font-weight: 200;
+    font-size: 15px;
+    border: 1px solid #FF00FF;
+    width: 8%;
+    margin-left: 20px;
+}
+
+.btn-custom:focus {
+    color: white;
+    background: #b700ff;
+    font-weight: 400;
+    font-size: 18px;
+    border: 1px solid #b700ff;
+}
+
+.btn-default{
+    color: white;
+    background: #FF1493;
+    margin-left: 20px;
+    margin-top: 40px;
+    border: 1px solid #FF1493; 
+}
+.btn-default:focus {
+    color: white;
+    background: #b700ff;
+    font-weight: 400;
+    font-size: 18px;
+    border: 1px solid #b700ff;
+}
+.expansion-panel{
+    width: 90%;
+}
+#chart{
+    margin-top: 40px;
+    #canvas{
+        margin-right: 100px; 
+    }
+
+}
+.coin-info{
+    .coin-more{
+        font-size: 25px;
+        font-weight: 500;
+    }
+    .panel-title{
+        font-size: 21px;
+        font-weight: 500;
+    }
+    h5{
+        font-size: 18px;
+        font-weight: 400;
+        width: 90%;
+    }
+}
+
+.coin-list-items{
+    .progress-bar{
+        margin-top: 50px;
+        height: 12px;
+        width: 60%;
+        border-radius: 100px;
+        color: #FF00FF;
+    }
+    .progress-coin-change{
+        margin-left: 250px;
+    }
+    .growing-rate{
+        margin-left: 240px;
+        font-size: 18px;
+        font-weight: 400;
+    }
+    .money-small{
+        color: #FF1493;
+        margin-top: 0px;
+        // background: #FF1493;
+    }
+    #second-column{
+        margin-left: 30px;
+        margin-top: 47px;
+    }
+    .scores-data{
+        margin-left: 10px;
+        font-size: 16px;
+        font-weight: 200;
+    }
+    .mat-list-second{
+        font-size: 18px;
+        font-weight: 400;
+    }
+    .price-statistics{
+        font-size: 22px;
+        font-weight: 500;
+        text-align: center;
+        text-decoration: underline;
+        
+    }
+    #third-column{
+        margin-top: 15px;
+        margin-left: 80px;
+        align-items: center;
+        border-left: 5px solid #b700ff;
+        border-radius: 50px;
+    }
+    .mat-list-third{
+        margin-left: 10px;
+    }
+    .social-followers{
+        margin-left: 20px;
+        font-size: 16px;
+        font-weight: 200;
+        // background: #FF1493;
+        // color: white;
+        border-radius: 10px;
+        
+    }
+    .social-list{
+        font-size: 16px;
+        font-weight: 400;
+    }
+    .community-header{
+        font-size: 22px;
+        font-weight: 600;
+        text-align: center;
+        text-decoration-line: underline;
+    }
+    .homepage-link{
+        margin-left: 30px;
+    }
+
+}
+.community{
+
+    .title-community{
+        font-size: 21px;
+        font-weight: 500;
+        margin-top: 16px;
+    }
+}
+footer{
+    text-align: center;
+    background: #F5F5F5;
+    height: 70px;
+    margin-top: 20px;
+    #sticky-footer{
+        // margin-right: -200px;
+        width: 115%;
+        height: 10px;
+        color: black;
+        font-size: 18px;
+        font-weight: 200;
+        background: #F5F5F5;
+        text-align: center;
+        margin-top: 10px;
+    }
+    .copyright{
+        font-size: 18px;
+        font-weight: 300;
+        margin-right: 100px;
+    }
+    .icon-link{
+        color: white;
+    }
+}
+footer{
+    #icon1{
+        
+        margin-right: 00px;
+        
+    }
+    #icon2{
+        margin-right: 0px;
+        margin-left: 20px;
+    }
+    #icon3{
+        margin-right: 0px;
+        margin-left: 20px;
+    }
+    #icon4{
+        margin-right: 50px;
+        margin-left: 20px;
+    }
+}
+hr{
+    // margin-right: 200px;
+    width: 1000px;
+}
+.hr{
+    margin-right: 200px;
+    width: 1100px;
+}
+
+
+
+
+// .one-day{
+//     background: transparent;
+//     font-weight: 200;
+//     font-size: 18px;
+//     border: 30px solid #b700ff;
+// }
+// .mycoinname{
+//     margin-left: 100px;
+// }
+// .rank{
+//     width: 40px;
+//     margin-left: 290px;
+//     margin-bottom: 670px;
+// }
+// .ranktext{
+//     font-size: 20px;
+//     font-weight: 500;
+//     margin-left: 90px;
+//    margin-top: 30px;
+// }

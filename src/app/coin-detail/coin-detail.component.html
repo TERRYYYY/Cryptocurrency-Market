@@ -1,0 +1,224 @@
+<div class="container-fluid">
+    <div class="row" id="navigate">
+      <a id="top"></a>
+      <p (click)="homePage()" class="navigate">Coin <span> > </span> Details </p>
+        <div class="col-md-3 details">
+          
+            <div class="img">
+                <img [src]="coinData?.image?.small" alt="coin">
+                <h3 class="mycoinname" >{{coinData?.name}} 
+                    <span class="mysymbol">({{coinData?.symbol | uppercase}} )</span>
+                    <span class="mycurrentprice">{{coinData?.market_data.current_price.eur | currency: currency}}</span>
+                </h3>
+                <h6 [innerHtml]="coinData?.description?.en.split('. ')[0]"></h6>
+                <div class="more-details">
+                    <span class="title">
+                      <button mat-mini-fab color="" style="background: #b700ff;color:white;" aria-label="Example icon button with a filter list icon">
+                        <mat-icon>swap_vert</mat-icon>
+                      </button>
+                      Rank: </span> <span class="value">{{coinData?.market_cap_rank}}</span>
+                    <span id="next" class="title"> 
+                      <button mat-mini-fab color="" style="background: #b700ff;color:white;" aria-label="Example icon button with a filter list icon">
+                        <mat-icon>attach_money</mat-icon>
+                      </button>
+                      Current Price: </span> <span class="value">{{coinData?.market_data.current_price.eur | currency: currency}}</span>
+                    <span id="next" class="title"> 
+                      <button mat-mini-fab color="" style="background: #b700ff;color:white;" aria-label="Example icon button with a filter list icon">
+                        <mat-icon>trending_up</mat-icon>
+                      </button>
+                      Market Cap: </span> <span class="value">{{coinData?.market_data.market_cap.eur | currency : currency}}</span> 
+                </div>
+                .
+            </div>
+        </div>
+          <hr class="hr">
+        <div class="graph-header" id="graph-header">
+          <button class="button-chart">Show Chart in the Last: </button>
+          <button class="btn btn-custom" (click)="getGraphData(1)">1 Day</button>
+          <button class="btn btn-custom" (click)="getGraphData(30)">30 Days</button>
+          <button class="btn btn-custom" (click)="getGraphData(90)">90 Days</button>
+          <button class="btn btn-custom" (click)="getGraphData(365)">1 Year</button>
+
+          <button id="buy-sell" class="btn btn-default" mat-button [matMenuTriggerFor]="buy" >Buy</button>
+          <mat-menu class="mat-menu-item" #buy="matMenu" xPosition="before">
+            <button mat-menu-item class="mat-menu-item">Thank you for buying {{coinData?.name}} coin. </button>
+          </mat-menu>
+          
+          <button id="sell" class="btn btn-default" mat-button [matMenuTriggerFor]="sell">Sell</button>
+          <mat-menu class="mat-menu-item" #sell="matMenu" xPosition="after">
+            <button mat-menu-item class="mat-menu-item">You just sold your {{coinData?.name}} coins. </button>
+          </mat-menu>
+          
+          <!-- <mat-tab-group class="tab-group" animationDuration="0ms" >
+            <mat-tab label="Chart"></mat-tab>
+            <mat-tab class="one-day" label="24 hrs"></mat-tab>
+            <mat-tab label="30 Days"></mat-tab>
+            <mat-tab label="90 Days"></mat-tab>
+            <mat-tab label="1 Year"></mat-tab>
+          </mat-tab-group> -->
+          
+        </div>
+
+        <!-- Graph Data -->
+        <div class="col-md" id="chart">
+            <canvas id="canvas" style="width: 90%;" baseChart [data]="lineChartData" [options]="lineChartOptions" [type]="lineChartType"></canvas>
+            <!-- <div class="d-flex justify-content-around">
+                <button class="btn btn-custom" (click)="getGraphData(1)">1 Day</button>
+                <button class="btn btn-custom" (click)="getGraphData(30)">30 Days</button>
+                <button class="btn btn-custom" (click)="getGraphData(90)">90 Days</button>
+                <button class="btn btn-custom" (click)="getGraphData(365)">1 Year</button>
+            </div> -->
+        </div>
+        <div class="coin-info"> <br> 
+          <h1 class="coin-more">MORE ABOUT {{coinData?.name | uppercase}} </h1>
+          <mat-accordion class="mat-accordion">
+            <mat-expansion-panel class="expansion-panel" (opened)="panelOpenState = true"
+                                 (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title class="panel-title">
+                  What is {{coinData?.name}}?
+                </mat-panel-title>
+                <mat-panel-description>
+                  More Information About {{coinData?.name}} {{panelOpenState ? 'open' : 'closed'}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <h5 [innerHtml]="coinData?.description?.en.split('. ')"></h5>
+            </mat-expansion-panel>
+          </mat-accordion>
+
+          <div class="coin-list-items" style="margin-left: 80px;">
+            <mat-progress-bar color="accent" class="progress-bar" mode="determinate" value="79"></mat-progress-bar>
+            <h3> 
+                    <mat-icon class="money-small">attach_money</mat-icon>
+            0.00
+              <span class="growing-rate">Growing Rate</span>
+              <span class="progress-coin-change">{{coinData?.market_data.current_price.eur | currency: currency}}</span>
+            </h3>
+            <hr>
+            <div class="row">
+              <div class="col-md-3" >
+                <mat-list>
+                  <h1 class="price-statistics">{{coinData?.name}} Price Statistics</h1>
+                  <mat-list-item class="mat-list-second">Circulating: 
+                    <span class="scores-data">{{coinData?.market_data.circulating_supply}}</span>
+                  </mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item>Liquidity Score:
+                    <span class="scores-data">{{coinData?.liquidity_score}}%</span>
+                  </mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item>High 24h:
+                    <span class="scores-data">{{coinData?.market_data.high_24h.eur | currency: currency}} </span>
+                  </mat-list-item>
+                  
+                </mat-list>
+              </div>
+              <div class="col-md-3" id="second-column" >
+                <mat-list>
+                  <mat-list-item>Volume:
+                    <span class="scores-data">{{coinData?.market_data.total_volume.eur | currency: currency}}</span>
+                  </mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item>Supply:
+                    <span class="scores-data">{{coinData?.market_data.total_supply}}</span>
+                  </mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item>Up Votes:
+                    <span class="scores-data">{{coinData?.sentiment_votes_up_percentage}}%</span>
+                  </mat-list-item>
+                </mat-list>
+              </div>
+              <div class="col-md-3" id="third-column" >
+                <mat-list class="mat-list-third">
+                  <h1 class="community-header">Community Data</h1>
+                  <mat-list-item class="social-list">Home: 
+                    <a href="{{coinData?.links.homepage[0]}}" class="homepage-link">{{coinData?.name}} Website</a>
+                  </mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item class="social-list">Twitter: 
+                    <span class="social-followers">{{coinData?.community_data.twitter_followers}}</span>
+                  </mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item class="social-list">Reddit Subscribers: 
+                    <span class="social-followers" >{{coinData?.community_data.reddit_subscribers}}</span>
+                  </mat-list-item>
+                  <!-- <mat-divider></mat-divider> -->
+                  <!-- <mat-list-item class="social-list" >Reddit Active Accounts:
+                    <span class="social-followers"> {{coinData?.community_data.reddit_accounts_active_48h}}</span>
+                  </mat-list-item> -->
+                </mat-list>
+              </div>
+            </div>
+
+            <!-- <div class="community">
+              <h1 class="title-community">Community Data ({{coinData?.symbol | uppercase}})</h1>
+              <mat-tab-group animationDuration="0ms">
+                <mat-tab label="Reddit Active Accounts">{{coinData?.community_data.reddit_accounts_active_48h}}</mat-tab>
+                <mat-tab label="Reddit Subscribers">{{coinData?.community_data.reddit_subscribers}}</mat-tab>
+                <mat-tab label="Twitter Followers">{{coinData?.community_data.twitter_followers}}</mat-tab>
+              </mat-tab-group>
+            </div> -->
+          </div>
+
+        </div>
+        <!-- <div class="socials">
+          
+          <button mat-mini-fab color="accent" id="icon1" style="background: #8A2BE2;" aria-label="Example icon button with a plus one icon">
+            <mat-icon>facebook</mat-icon>
+          </button>
+          <button mat-mini-fab color="accent" id="icon2" style="background: #8A2BE2;" aria-label="Example icon button with a plus one icon">
+            <mat-icon>reddit</mat-icon>
+          </button>
+          <button mat-mini-fab color="accent" id="icon3" style="background: #8A2BE2;" aria-label="Example icon button with a plus one icon">
+            <mat-icon>smart_display</mat-icon>
+          </button>
+          <button mat-mini-fab color="accent" id="icon4" style="background: #8A2BE2;" aria-label="Example icon button with a plus one icon">
+            <mat-icon>email</mat-icon>
+          </button>
+        </div> -->
+    </div>
+</div>
+
+<!-- <footer>
+  <div class="text-center p-4" id="sticky-footer" style="background-color: rgba(0, 0, 0, 0.05);" >
+    <button mat-mini-fab color="accent" id="icon1" style="background: #8A2BE2;" aria-label="Example icon button with a plus one icon">
+      <mat-icon>facebook</mat-icon>
+    </button>
+    <button mat-mini-fab color="accent" id="icon2" style="background: #8A2BE2;" aria-label="Example icon button with a plus one icon">
+      <mat-icon>reddit</mat-icon>
+    </button>
+    <button mat-mini-fab color="accent" id="icon3" style="background: #8A2BE2;" aria-label="Example icon button with a plus one icon">
+      <mat-icon>smart_display</mat-icon>
+    </button>
+    <button mat-mini-fab color="accent" id="icon4" style="background: #8A2BE2;" aria-label="Example icon button with a plus one icon">
+      <mat-icon>email</mat-icon>
+    </button>
+    
+    © 2022 Copyright:
+    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Kariuki Terry</a>
+  </div>
+</footer> -->
+
+
+
+<footer id="sticky-footer" class="flex-shrink-0 py-4"> 
+  <div class="container text-center">
+    <button mat-mini-fab color="accent" id="icon1" style="background: #8A2BE2;" aria-label="Example icon button with a plus one icon">
+      <a href="https://github.com/TERRYYYY" class="icon-link"> <mat-icon>facebook</mat-icon> </a>
+
+    </button>
+    <button mat-mini-fab color="accent" id="icon2" style="background: #8A2BE2;" aria-label="Example icon button with a plus one icon">
+      <a href="https://github.com/TERRYYYY" class="icon-link" ><mat-icon>reddit</mat-icon></a>
+
+    </button>
+    <button mat-mini-fab color="accent" id="icon3" style="background: #8A2BE2;" aria-label="Example icon button with a plus one icon">
+      <a href="https://www.linkedin.com/in/terry-kariuki-5233691b2" class="icon-link" ><mat-icon>smart_display</mat-icon></a>
+      
+    </button>
+    <button mat-mini-fab color="accent" id="icon4" style="background: #8A2BE2;" aria-label="Example icon button with a plus one icon">
+      <a href="mailto:kariuki.terry11@gmail.com" class="icon-link" ><mat-icon>email</mat-icon></a>
+
+    </button>
+    <small class="copyright">Copyright 2022: &copy; Kariuki Terry</small>
+  </div>
+</footer>

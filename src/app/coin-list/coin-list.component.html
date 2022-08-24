@@ -1,0 +1,102 @@
+<div class="banner">
+    <div class="container">
+        <div class="header">
+            <h2 class="crypto-big-header">Crypto Market</h2>
+            <h6>Checkout All The Crypto Currency Latest Updates</h6>
+        </div>
+        <div class="sub-header">
+            <marquee behavior="scroll" onmouseover="stop()" onmouseout="start()" loop="infinite" direction="left">
+                <div class="row">
+                    <ng-container *ngFor="let row of bannerData">
+                        <div class="col-1">
+                            <div class="card">
+                                <img [src]="row.image" width="45" class="img-fluid" alt="">
+                                <div class="card-body">
+                                    <div (click)="gotoDetails(row)" class="card-title" style="cursor: pointer;" >{{row.symbol | uppercase}} 
+                                      <span class="text-danger">{{row.market_cap_change_percentage_24h}}%</span> 
+                                    </div>
+                                    <p class="card-text">{{row.current_price | currency: currency}} </p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                </div>
+            </marquee>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-3" >
+    <!-- Table -->
+    <mat-form-field appearance="standard">
+        <mat-label >Search</mat-label>
+        <input style="color: black;" matInput (keyup)="applyFilter($event)" placeholder="Eg. BTC" #input>
+      </mat-form-field>
+      
+      <div class="mat-elevation-z8">
+        <table style="color: black;" mat-table [dataSource]="dataSource" matSort>
+      
+          <!-- ID Column -->
+          <ng-container matColumnDef="symbol">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Coin </th>
+            <td mat-cell *matCellDef="let row">
+                <img [src]="row.image" width="30" alt="">
+                <span class="mx-2" style="cursor: pointer;">{{row.symbol | uppercase}}</span>
+            </td>
+          </ng-container>
+      
+          <!-- Current Price Column -->
+          <ng-container matColumnDef="current_price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+            <td mat-cell *matCellDef="let row"> {{row.current_price | currency: currency}} </td>
+          </ng-container>
+
+          <!-- 24hr Change Column -->
+          <ng-container matColumnDef="price_change_percentage_24h">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> 24hr Change </th>
+            <td [ngClass]="{positive: !inTheGreen(row.price_change_percentage_24h), negative: inTheGreen(row.price_change_percentage_24h)}" mat-cell *matCellDef="let row" > {{row.price_change_percentage_24h}}% </td>
+          </ng-container>
+      
+          <!-- Market Cap Column -->
+          <ng-container matColumnDef="market_cap">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Market Cap </th>
+            <td mat-cell *matCellDef="let row"> {{row.market_cap | currency : currency}} </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr (click)="gotoDetails(row)" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4" style="font-size: 18px;">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" aria-label="Select page of users"></mat-paginator>
+      </div>
+
+</div>
+<footer id="sticky-footer" class="flex-shrink-0 py-4"> 
+  <div class="container text-center">
+    <button mat-mini-fab color="accent" id="icon1" style="background: #8A2BE2;" aria-label="Example icon button with a plus one icon">
+      <a href="https://github.com/TERRYYYY" class="icon-link"> <mat-icon>facebook</mat-icon> </a>
+
+    </button>
+    <button mat-mini-fab color="accent" id="icon2" style="background: #8A2BE2;" aria-label="Example icon button with a plus one icon">
+      <a href="https://github.com/TERRYYYY" class="icon-link" ><mat-icon>reddit</mat-icon></a>
+
+    </button>
+    <button mat-mini-fab color="accent" id="icon3" style="background: #8A2BE2;" aria-label="Example icon button with a plus one icon">
+      <a href="https://www.linkedin.com/in/terry-kariuki-5233691b2" class="icon-link" ><mat-icon>smart_display</mat-icon></a>
+      
+    </button>
+    <button mat-mini-fab color="accent" id="icon4" style="background: #8A2BE2;" aria-label="Example icon button with a plus one icon">
+      <a href="mailto:kariuki.terry11@gmail.com" class="icon-link" ><mat-icon>email</mat-icon></a>
+
+    </button>
+    <small class="copyright">Copyright 2022: &copy; Kariuki Terry</small>
+  </div>
+</footer>
+

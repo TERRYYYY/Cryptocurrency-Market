@@ -1,0 +1,20 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.crypto{
+  font-size: 16px;
+}
+.crypto-coin{
+  font-size: 16px;
+  margin-top: 30px;
+}
+.width{
+  // margin-bottom: 500px;
+  height: 45px;
+  // background: #020e5d;
+  // background: radial-gradient(circle, rgba(183,0,255,1) 0%, rgba(2,56,93,1) 100%);
+  background: linear-gradient(90deg, rgba(200,0,255,1) 16%, rgba(2,22,93,1) 100%);
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 38px, rgba(0, 0, 0, 0.22) 0px 9px 10px;
+}
